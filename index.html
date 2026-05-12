@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Özkum Park Otel Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&family=Amiri:wght@700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--navy:#061b2f;
+--gold:#d4b06a;
+--cream:#f6f0e4;
+--white:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:"Cairo",sans-serif;
+background:var(--navy);
+color:white;
+overflow-x:hidden;
+}
+
+nav{
+background:rgba(6,27,47,.75);
+backdrop-filter:blur(14px);
+padding:18px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:999;
+border-bottom:1px solid rgba(212,176,106,.4);
+}
+
+.logo{
+font-family:"Playfair Display",serif;
+font-size:30px;
+font-weight:700;
+color:var(--gold);
+}
+
+.langs{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.langs button{
+background:transparent;
+border:1px solid var(--gold);
+color:white;
+padding:10px 16px;
+border-radius:12px;
+cursor:pointer;
+font-weight:700;
+transition:.3s;
+}
+
+.langs button:hover,
+.langs .active{
+background:var(--gold);
+color:#111;
+}
+
+.hero{
+position:relative;
+min-height:92vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px 7%;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:url("breakfast-1.jpg") center/cover;
+filter:brightness(.45);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:900px;
+}
+
+.hero h1{
+font-family:"Amiri",serif;
+font-size:clamp(42px,7vw,82px);
+color:var(--gold);
+line-height:1.2;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:clamp(18px,2vw,25px);
+line-height:1.9;
+max-width:700px;
+margin:auto;
+margin-bottom:30px;
+}
+
+.hero-btn{
+display:inline-block;
+padding:18px 34px;
+background:var(--gold);
+color:#111;
+font-weight:800;
+text-decoration:none;
+border-radius:15px;
+font-size:18px;
+transition:.3s;
+}
+
+.hero-btn:hover{
+transform:translateY(-3px);
+}
+
+.badge{
+position:absolute;
+top:80px;
+right:35px;
+width:135px;
+height:135px;
+border-radius:50%;
+background:var(--gold);
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:14px;
+font-size:19px;
+font-weight:900;
+line-height:1.25;
+color:#111;
+z-index:5;
+}
+
+.gallery{
+padding:70px 7%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.gallery img{
+width:100%;
+height:420px;
+object-fit:cover;
+border-radius:24px;
+transition:.5s;
+box-shadow:0 10px 35px rgba(0,0,0,.35);
+}
+
+.gallery img:hover{
+transform:scale(1.04);
+box-shadow:0 20px 45px rgba(0,0,0,.45);
+}
+
+.menu-section{
+padding:70px 7%;
+text-align:center;
+}
+
+.section-title{
+font-size:52px;
+font-family:"Playfair Display",serif;
+color:var(--gold);
+margin-bottom:12px;
+}
+
+.section-sub{
+opacity:.8;
+margin-bottom:45px;
+font-size:18px;
+}
+
+.book{
+display:flex;
+gap:25px;
+justify-content:center;
+align-items:stretch;
+flex-wrap:wrap;
+perspective:1500px;
+}
+
+.page{
+background:var(--cream);
+color:#222;
+width:420px;
+min-height:620px;
+padding:35px;
+border-radius:20px;
+box-shadow:0 20px 45px rgba(0,0,0,.4);
+transition:.6s;
+transform-style:preserve-3d;
+}
+
+.page.flip{
+transform:rotateY(-25deg) scale(.97);
+opacity:.65;
+}
+
+.page h3{
+font-size:34px;
+color:var(--navy);
+margin-bottom:24px;
+font-family:"Playfair Display",serif;
+}
+
+.menu-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+padding:11px 0;
+border-bottom:1px dashed #b5945f;
+font-size:16px;
+font-weight:700;
+line-height:1.5;
+}
+
+.menu-row span:first-child{
+max-width:75%;
+}
+
+.price{
+color:#7a4b18;
+font-weight:800;
+white-space:nowrap;
+}
+
+.book-buttons{
+margin-top:35px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.book-buttons button{
+background:var(--gold);
+color:#111;
+border:none;
+padding:15px 30px;
+border-radius:14px;
+font-size:17px;
+font-weight:800;
+cursor:pointer;
+}
+
+.luxury-actions{
+display:flex;
+justify-content:center;
+gap:20px;
+padding:50px 7%;
+flex-wrap:wrap;
+}
+
+.luxury-actions a{
+border:1px solid var(--gold);
+padding:16px 28px;
+border-radius:15px;
+color:white;
+text-decoration:none;
+font-weight:800;
+transition:.3s;
+}
+
+.luxury-actions a:hover{
+background:var(--gold);
+color:#111;
+}
+
+.music-btn{
+position:fixed;
+bottom:25px;
+left:25px;
+width:58px;
+height:58px;
+border:none;
+border-radius:50%;
+background:var(--gold);
+font-size:24px;
+cursor:pointer;
+z-index:999;
+}
+
+footer{
+padding:40px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.1);
+opacity:.7;
+}
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:52px;
+}
+
+.badge{
+width:105px;
+height:105px;
+font-size:15px;
+right:15px;
+top:70px;
+}
+
+.page{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">Özkum Park</div>
+
+<div class="langs">
+<button class="active" onclick="setLang('tr',this)">TR</button>
+<button onclick="setLang('ar',this)">AR</button>
+<button onclick="setLang('en',this)">EN</button>
+<button onclick="setLang('ru',this)">RU</button>
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="badge" data-key="badge">
+En Çok<br>Tercih Edilen
+</div>
+
+<div class="hero-content">
+
+<h1 data-key="heroTitle">
+Özkum’un Meşhur Kahvaltısı
+</h1>
+
+<p data-key="heroText">
+Sapanca Gölü manzarası eşliğinde zengin ve lezzetli Türk kahvaltısı.
+</p>
+
+<a href="https://wa.me/905321234567" class="hero-btn" data-key="heroBtn">
+Masanı Şimdi Ayırt
+</a>
+
+</div>
+
+</section>
+
+<section class="gallery">
+
+<img src="breakfast-1.jpg" alt="Özkum Breakfast">
+<img src="breakfast-2.jpg" alt="Sapanca Breakfast">
+
+</section>
+
+<section class="menu-section">
+
+<h2 class="section-title" data-key="menuTitle">Menü</h2>
+
+<p class="section-sub" data-key="menuSub">
+Menüyü kitap sayfası gibi çevirerek inceleyin
+</p>
+
+<div class="book">
+
+<div class="page" id="leftPage"></div>
+<div class="page" id="rightPage"></div>
+
+</div>
+
+<div class="book-buttons">
+<button onclick="prevPage()">◀</button>
+<button onclick="nextPage()">▶</button>
+</div>
+
+</section>
+
+<section class="luxury-actions">
+
+<a href="https://wa.me/905321234567" target="_blank">
+واتساب للحجز 💬
+</a>
+
+<a href="tel:+905321234567">
+اتصال مباشر 📞
+</a>
+
+<a href="https://www.google.com/maps/search/?api=1&query=Özkum+Park+Otel+Sapanca" target="_blank">
+موقعنا 📍
+</a>
+
+</section>
+
+<footer>
+© 2026 Özkum Park Otel Restaurant
+</footer>
+
+<script>
+
+let currentLang = "tr";
+let current = 0;
+
+const translations = {
+
+tr:{
+heroTitle:"Özkum’un Meşhur Kahvaltısı",
+heroText:"Sapanca Gölü manzarası eşliğinde zengin ve lezzetli Türk kahvaltısı.",
+heroBtn:"Masanı Şimdi Ayırt",
+badge:"En Çok<br>Tercih Edilen",
+menuTitle:"Menü",
+menuSub:"Menüyü kitap sayfası gibi çevirerek inceleyin"
+},
+
+ar:{
+heroTitle:"فطور أوزكوم الشهير",
+heroText:"فطور تركي فاخر مع إطلالة ساحرة على البحيرة.",
+heroBtn:"احجز طاولتك",
+badge:"الأكثر<br>طلباً",
+menuTitle:"قائمة الطعام",
+menuSub:"تصفح المنيو بطريقة تقليب الصفحات"
+},
+
+en:{
+heroTitle:"Özkum Famous Breakfast",
+heroText:"Luxury Turkish breakfast with a magical lake view.",
+heroBtn:"Book Your Table",
+badge:"Most<br>Popular",
+menuTitle:"Menu",
+menuSub:"Browse the menu like a book"
+},
+
+ru:{
+heroTitle:"Знаменитый завтрак Özkum",
+heroText:"Роскошный турецкий завтрак с видом على озеро.",
+heroBtn:"Забронировать",
+badge:"Самое<br>популярное",
+menuTitle:"Меню",
+menuSub:"Листайте меню как книгу"
+}
+
+};
+
+const menuPages = {
+
+tr:[
+{title:"Kahvaltı",items:[["Serpme Kahvaltı - 2 kişilik","1300 ₺"],["Kahvaltı Tabağı","500 ₺"],["Mıhlama","300 ₺"],["Menemen","250 ₺"],["Kavurmalı Yumurta","400 ₺"],["Güveçte Sucuk","300 ₺"]]},
+{title:"Başlangıçlar",items:[["Mercimek Çorbası","100 ₺"],["Sigara Böreği","200 ₺"],["Patates Cips","200 ₺"],["Paçanga Böreği","400 ₺"],["Çıtır Tavuk","350 ₺"],["Combo Tabak","500 ₺"]]},
+{title:"Salatalar",items:[["Çoban Salata","300 ₺"],["Akdeniz Salata","300 ₺"],["Roka Salatası","350 ₺"],["Sezar Salata","500 ₺"]]},
+{title:"Burgerler",items:[["Hamburger","350 ₺"],["Cheeseburger","600 ₺"],["Özkum Burger","650 ₺"]]},
+{title:"Makarnalar",items:[["Spagetti","400 ₺"],["Penne Arabiata","400 ₺"],["Fettuccine Alfredo","500 ₺"]]},
+{title:"Izgaralar",items:[["Tavuk Göğüs","600 ₺"],["Köfte","650 ₺"],["Kuzu Şiş","950 ₺"],["Karışık Izgara","1300 ₺"]]},
+{title:"Tatlılar",items:[["Cheesecake","250 ₺"],["Tiramisu","300 ₺"],["Sufle","400 ₺"]]}
+],
+
+ar:[
+{title:"الفطور",items:[["فطور تركي لشخصين","1300 ₺"],["طبق فطور","500 ₺"],["ميهلاما","300 ₺"],["منمن","250 ₺"],["بيض بالقاورما","400 ₺"],["سجق بالطاجن","300 ₺"]]},
+{title:"المقبلات",items:[["شوربة عدس","100 ₺"],["بورك بالجبن","200 ₺"],["بطاطس مقلية","200 ₺"],["بورك باشانغا","400 ₺"],["دجاج كرسبي","350 ₺"],["طبق مشكل","500 ₺"]]},
+{title:"السلطات",items:[["سلطة چوبان","300 ₺"],["سلطة متوسطية","300 ₺"],["سلطة جرجير","350 ₺"],["سلطة سيزر","500 ₺"]]},
+{title:"البرغر",items:[["هامبرغر","350 ₺"],["تشيز برغر","600 ₺"],["أوزكوم برغر","650 ₺"]]},
+{title:"المكرونة",items:[["سباغيتي","400 ₺"],["بيني أرابياتا","400 ₺"],["فيتوتشيني ألفريدو","500 ₺"]]},
+{title:"المشاوي",items:[["صدر دجاج","600 ₺"],["كفتة","650 ₺"],["شيش غنم","950 ₺"],["مشاوي مشكلة","1300 ₺"]]},
+{title:"الحلويات",items:[["تشيز كيك","250 ₺"],["تيراميسو","300 ₺"],["سوفليه","400 ₺"]]}
+],
+
+en:[
+{title:"Breakfast",items:[["Turkish Breakfast for two","1300 ₺"],["Breakfast Plate","500 ₺"],["Mıhlama","300 ₺"],["Menemen","250 ₺"],["Eggs with Kavurma","400 ₺"],["Sucuk Casserole","300 ₺"]]},
+{title:"Starters",items:[["Lentil Soup","100 ₺"],["Cheese Pastry","200 ₺"],["French Fries","200 ₺"],["Paçanga Pastry","400 ₺"],["Crispy Chicken","350 ₺"],["Combo Plate","500 ₺"]]},
+{title:"Salads",items:[["Shepherd Salad","300 ₺"],["Mediterranean Salad","300 ₺"],["Rocket Salad","350 ₺"],["Caesar Salad","500 ₺"]]},
+{title:"Burgers",items:[["Hamburger","350 ₺"],["Cheeseburger","600 ₺"],["Özkum Burger","650 ₺"]]},
+{title:"Pasta",items:[["Spaghetti","400 ₺"],["Penne Arrabbiata","400 ₺"],["Fettuccine Alfredo","500 ₺"]]},
+{title:"Grills",items:[["Chicken Breast","600 ₺"],["Meatballs","650 ₺"],["Lamb Skewers","950 ₺"],["Mixed Grill","1300 ₺"]]},
+{title:"Desserts",items:[["Cheesecake","250 ₺"],["Tiramisu","300 ₺"],["Soufflé","400 ₺"]]}
+],
+
+ru:[
+{title:"Завтрак",items:[["Турецкий завтрак на двоих","1300 ₺"],["Завтрак","500 ₺"],["Мыхлама","300 ₺"],["Менемен","250 ₺"],["Яйца с кавурмой","400 ₺"],["Суджук","300 ₺"]]},
+{title:"Закуски",items:[["Чечевичный суп","100 ₺"],["Сырный пирог","200 ₺"],["Картофель фри","200 ₺"],["Пачанга","400 ₺"],["Хрустящая курица","350 ₺"],["Комбо","500 ₺"]]},
+{title:"Салаты",items:[["Салат Чобан","300 ₺"],["Средиземноморский салат","300 ₺"],["Салат с рукколой","350 ₺"],["Цезарь","500 ₺"]]},
+{title:"Бургеры",items:[["Гамбургер","350 ₺"],["Чизбургер","600 ₺"],["Бургер Özkum","650 ₺"]]},
+{title:"Паста",items:[["Спагетти","400 ₺"],["Пенне Арабьята","400 ₺"],["Феттучини Альфредо","500 ₺"]]},
+{title:"Гриль",items:[["Куриная грудка","600 ₺"],["Кёфте","650 ₺"],["Шашлык из ягненка","950 ₺"],["Микс гриль","1300 ₺"]]},
+{title:"Десерты",items:[["Чизкейк","250 ₺"],["Тирамису","300 ₺"],["Суфле","400 ₺"]]}
+]
+
+};
+
+function createPage(page){
+
+return `
+<h3>${page.title}</h3>
+
+${page.items.map(item=>`
+
+<div class="menu-row">
+<span>${item[0]}</span>
+<span class="price">${item[1]}</span>
+</div>
+
+`).join("")}
+
+`;
+
+}
+
+function renderBook(){
+
+const pages = menuPages[currentLang];
+
+document.getElementById("leftPage").innerHTML =
+createPage(pages[current]);
+
+document.getElementById("rightPage").innerHTML =
+createPage(pages[(current+1)%pages.length]);
+
+}
+
+function nextPage(){
+
+const left=document.getElementById("leftPage");
+const right=document.getElementById("rightPage");
+
+left.classList.add("flip");
+right.classList.add("flip");
+
+setTimeout(()=>{
+
+current=(current+2)%menuPages[currentLang].length;
+
+renderBook();
+
+left.classList.remove("flip");
+right.classList.remove("flip");
+
+},400);
+
+}
+
+function prevPage(){
+
+const left=document.getElementById("leftPage");
+const right=document.getElementById("rightPage");
+
+left.classList.add("flip");
+right.classList.add("flip");
+
+setTimeout(()=>{
+
+current=(current-2+menuPages[currentLang].length)%menuPages[currentLang].length;
+
+renderBook();
+
+left.classList.remove("flip");
+right.classList.remove("flip");
+
+},400);
+
+}
+
+function setLang(lang,btn){
+
+currentLang=lang;
+current=0;
+
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+
+document.querySelectorAll("[data-key]").forEach(el=>{
+
+const key=el.dataset.key;
+
+if(translations[lang][key]){
+el.innerHTML=translations[lang][key];
+}
+
+});
+
+document.querySelectorAll(".langs button")
+.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+renderBook();
+
+}
+
+renderBook();
+
+</script>
+
+</body>
+</html>
